@@ -1,0 +1,64 @@
+version: 2
+sources:
+  - name: thelook
+    database: bigquery-public-data
+    schema: thelook_ecommerce
+    tables:
+      - name: distribution_centers
+        columns:
+          - name: id
+            tests:
+              - unique
+              - not_null
+      - name: events
+        columns:
+          - name: id
+            tests:
+              - unique
+              - not_null
+          - name: traffic_source
+            tests:
+              - accepted_values:
+                  values:
+                    - Adwords
+                    - YouTube
+                    - Email
+                    - Facebook
+                    - Organic
+      - name: inventory_items
+        columns:
+          - name: id
+            tests:
+              - unique
+              - not_null
+      - name: order_items
+        columns:
+          - name: id
+            tests:
+              - unique
+              - not_null
+      - name: orders
+        columns:
+          - name: order_id
+            tests:
+              - unique
+              - not_null
+          - name: status
+            tests:
+              - accepted_values:
+                  values:
+                    - Complete
+                    - Canceled
+                    - Returned
+      - name: products
+        columns:
+          - name: id
+            tests:
+              - unique
+              - not_null
+      - name: users
+        columns:
+          - name: id
+            tests:
+              - unique
+              - not_null
